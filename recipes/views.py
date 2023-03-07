@@ -9,3 +9,7 @@ def view_home(request):
 
 def view_about(request):
     return HttpResponse("About")
+
+
+def view_contact(request):
+    return HttpResponse("Contact")
