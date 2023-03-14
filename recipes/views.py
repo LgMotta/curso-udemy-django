@@ -5,5 +5,8 @@ from django.shortcuts import render
 # Create your views here.
 def view_home(request):
     return render(
-        request, "home.html", context={"name": "Luiz guilherme"}, status=200
+        request,
+        "recipes/pages/home.html",
+        context={"name": "Luiz guilherme"},
+        status=200,
     )
