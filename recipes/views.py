@@ -15,7 +15,7 @@ def home(request):
 def recipes(request, id):
     return render(
         request,
-        "recipes/pages/home.html",
+        "recipes/pages/recipe-view.html",
         context={"name": "Luiz guilherme"},
         status=200,
     )
