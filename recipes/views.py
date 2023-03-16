@@ -3,7 +3,16 @@ from django.shortcuts import render
 
 
 # Create your views here.
-def view_home(request):
+def home(request):
+    return render(
+        request,
+        "recipes/pages/home.html",
+        context={"name": "Luiz guilherme"},
+        status=200,
+    )
+
+
+def recipes(request, id):
     return render(
         request,
         "recipes/pages/home.html",
