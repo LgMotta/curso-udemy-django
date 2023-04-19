@@ -1,12 +1,10 @@
-from django.contrib.auth.models import User
-from django.test import TestCase
 from django.urls import resolve, reverse
 
 from recipes import views
-from recipes.models import Category, Recipe
+from recipes.tests.test_recipes_base import RecipeTestBase
 
 
-class RecipeViewsTest(TestCase):
+class RecipeViewsTest(RecipeTestBase):
     def test_recipe_home_view_is_correct(self):
         view = resolve(reverse("recipes:home"))
         self.assertIs(view.func, views.home)
@@ -42,35 +40,11 @@ class RecipeViewsTest(TestCase):
             reverse("recipes:recipe", kwargs={"id": 1000})
         )
         self.assertEqual(response.status_code, 404)
-
-    def test_recipe_home_template_loads_recipe(self):
-        category = Category.objects.create(name="Test Category")
-        author = User.objects.create_user(
-            username="testuser",
-            password="testpassword",
-            first_name="Test",
-            last_name="User",
-            email="email@email.com",
-        )
-        recipe = Recipe.objects.create(
-            category=category,
-            author=author,
-            title="Test Recipe",
-            description="Test Description",
-            slug="test-recipe",
-            preparation_time=10,
-            preparation_time_unit="minutos",
-            servings=2,
-            servings_unit="pessoas",
-            preparation_steps="Test Preparation Steps",
-            preparation_steps_is_html=False,
-            is_published=True,
-        )
-
+        self.make_recipe(preparation_time=7)
         response = self.client.get(reverse("recipes:home"))
         content = response.content.decode("utf-8")
         response_context_recipes = response.context["recipes"]
 
         self.assertIn("Test Recipe", content)
-        self.assertIn("10 minutos", content)
+        self.assertIn("7 minutos", content)
         self.assertEqual(len(response_context_recipes), 1)
