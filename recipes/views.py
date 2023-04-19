@@ -25,8 +25,10 @@ def category(request, category_id):
     return render(
         request,
         "recipes/pages/category.html",
-        context={"recipes": recipes,
-                 "title": f'{recipes[0].category.name} - Category | '},
+        context={
+            "recipes": recipes,
+            "title": f"{recipes[0].category.name} - Category | ",
+        },
         status=200,
     )
 
