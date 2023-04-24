@@ -11,13 +11,14 @@ class RecipeTestBase(TestCase):
     def make_category(self, name="Test Category"):
         return Category.objects.create(name=name)
 
-    def make_author(self,
-                    username="testuser",
-                    password="testpassword",
-                    first_name="Test",
-                    last_name="User",
-                    email="email@email.com",
-                    ):
+    def make_author(
+        self,
+        username="testuser",
+        password="testpassword",
+        first_name="Test",
+        last_name="User",
+        email="email@email.com",
+    ):
         return User.objects.create_user(
             username=username,
             password=password,
@@ -26,20 +27,21 @@ class RecipeTestBase(TestCase):
             email=email,
         )
 
-    def make_recipe(self,
-                    category_data=None,
-                    author_data=None,
-                    title="Test Recipe",
-                    description="Test Description",
-                    slug="test-recipe",
-                    preparation_time=10,
-                    preparation_time_unit="minutos",
-                    servings=2,
-                    servings_unit="pessoas",
-                    preparation_steps="Test Preparation Steps",
-                    preparation_steps_is_html=False,
-                    is_published=True,
-                    ):
+    def make_recipe(
+        self,
+        category_data=None,
+        author_data=None,
+        title="Test Recipe",
+        description="Test Description",
+        slug="test-recipe",
+        preparation_time=10,
+        preparation_time_unit="minutos",
+        servings=2,
+        servings_unit="pessoas",
+        preparation_steps="Test Preparation Steps",
+        preparation_steps_is_html=False,
+        is_published=True,
+    ):
 
         if category_data is None:
             category_data = {}
