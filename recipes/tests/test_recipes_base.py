@@ -41,6 +41,7 @@ class RecipeTestBase(TestCase):
         preparation_steps="Test Preparation Steps",
         preparation_steps_is_html=False,
         is_published=True,
+        cover_image="None",
     ):
 
         if category_data is None:
@@ -61,4 +62,5 @@ class RecipeTestBase(TestCase):
             preparation_steps=preparation_steps,
             preparation_steps_is_html=preparation_steps_is_html,
             is_published=is_published,
+            cover=cover_image,
         )
