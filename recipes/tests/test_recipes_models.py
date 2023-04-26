@@ -56,3 +56,10 @@ class RecipeModelTest(RecipeTestBase):
             recipe.preparation_steps_is_html,
             msg="preparation_steps_is_html should be False by default",
         )
+
+    def test_recipe_str_representation(self):
+        test_title = "Test Recipe"
+        self.recipe.title = test_title
+        self.recipe.full_clean()
+        self.recipe.save()
+        self.assertEqual(str(self.recipe), test_title)
